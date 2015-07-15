@@ -1,19 +1,12 @@
 #include <stdio.h>
-#include <cuda.h> // include cuda-api header
 
 __global__ void helloFromGPU(void){
-	printf("Hello from GPU! %d\n", threadIdx.x);	// accessing thread id
+	printf("Hello from GPU!\n");
 }
 
 int main(void){
 	printf("Hello! from CPU\n");
 	
 	helloFromGPU <<< 1,10 >>>();
-
-	// error handling
-	cudaError_t res = cudaDeviceReset();
-	if(res == cudaSuccess){ 
-		printf("success!\n");
-	}
-
+	cudaDeviceReset();
 }
